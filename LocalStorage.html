@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Local Storage Sandbox Code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        //happy path - gets value, sets value, displays value, and removes value;
+        function rememberMe() {
+            var userName = document.getElementById("name").value;
+            localStorage.setItem("myName", userName);
+        }
+
+        function getName() {
+            var rememberedName = localStorage.getItem("myName");
+            if (rememberedName != null && rememberedName != "") {
+                document.getElementById("output").innerHTML = rememberedName + " was the last name entered.";
+            } else {
+                document.getElementById("output").innerHTML = "There is no name currently held in Local Storage.";
+            }
+        }
+
+        function removeFromLocalStorage() {
+            localStorage.removeItem("myName");
+        }
+
+        //nasty path - does not have key to store value
+        function localStorageError() {
+                var theName = document.getElementById("name").value;
+                localStorage.setItem(name);
+            }
+            //nasty path - item doesn't exist
+        function cantGetItem() {
+            var userAge = localStorage.getItem("userAge")
+            document.getElementById("ouput").innerHTML = userAge;
+        }
+
+        //happy path
+        function storeArray() {
+            var itemOne = document.getElementById("item1").value;
+            var itemTwo = document.getElementById("item2").value;
+            var wishList = [itemOne, itemTwo];
+            localStorage.setItem("userWishList", JSON.stringify(wishList));
+        }
+
+        function getArray() {
+            var list = localStorage.getItem("userWishList");
+            list = JSON.parse(list);
+            document.getElementById("output1").innerHTML = list;
+        }
+
+        //nasty path - can't store an array like this
+        function storeArrayBad() {
+                var itemOne = document.getElementById("item1").value;
+                var itemTwo = document.getElementById("item2").value;
+                var wishList = [itemOne, itemTwo];
+                localStorage.setItem("userWishList", wishList);
+            }
+            //nasty path - displays array as ["item1, "item2"]
+        function getArrayBad() {
+            var list = localStorage.getItem("userWishList");
+            document.getElementById("output1").innerHTML = list;
+        }
+    </script>
+
+</head>
+
+<body>
+    <div>
+        Enter Your Name:
+        <input type="text" id="name" size="20">
+        <button type="button" onclick="rememberMe()">Click to Add Name</button>
+    </div>
+    <div>
+        <button type="button" onclick="getName()" style="margin:10px 0px">Check Local Storage</button>
+        <br>
+        <textarea id="output" rows="3" cols="30" style="margin:5px 0px;"></textarea>
+        <br>
+        <button type="button" onclick="removeFromLocalStorage()">Remove From Local Storage </button>
+    </div>
+    <div>
+        List two things you want:
+        <input type="text" id="item1" size="20">
+        <input type="text" id="item2" size="20">
+        <button type="button" onclick="storeArray()">Click to Store</button>
+        <button type="button" onclick="getArray()">Get Wishlist</button>
+        <p id="output1"></p>
+    </div>
+</body>
+
+</html>

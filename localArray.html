@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Array Sandbox Code</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <!--This will take an array of names and store it locally and display it -->
+        <p id="names"></p>
+        <script>
+            //Creating an array and storing it locally.  Stingify will convert the arrray to a string.//
+             var names = ["John", "Bob", "Emily", "Jill", "Watson", "Henry", "Jack", "Steve"];
+             localStorage.setItem("namesave", JSON.stringify(names));
+             
+             //retrieving an array that is stored locally//
+             
+             var retrievedData = localStorage.getItem("namesave");
+             var names2 = JSON.parse(retrievedData);
+             var namesDisp = names2.join(', ');
+             
+             //return the names array//
+             document.getElementById("names").innerHTML = namesDisp;                    
+             
+        </script>
+        
+        <!--This will test to see what happens when an array is empty -->
+        <p id="emptyArray"></p>
+        <script>
+            //Creating an array and storing it locally.  Stingify will convert the arrray to a string.//
+            var arrayNone = [];
+            localStorage.setItem("ArraySave", JSON.stringify(arrayNone));             
+            //retrieving an array that is stored locally
+             
+            var retrievedData = localStorage.getItem("ArraySave");
+            var ArraySave2 = JSON.parse(retrievedData);
+            
+             
+             //return the names array//
+            document.getElementById("ArraySave2").innerHTML = namesDisp;
+            </script>    
+         
+    </body>
+</html>

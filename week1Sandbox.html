@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--
+Sandbox code for loops, conditional statements, functions
+-->
+<html>
+
+<head>
+    <title>Week One Sandbox Code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        //happy path
+        var i = 0;
+        var message = "";
+		
+		var a, b;
+		a = -35;
+		b = 20;
+
+        //bad path - not declared
+        myMessage = "Hi";
+
+        //happy path
+        function correctForLoop() {
+            for (i = 0; i < 10; i++) {
+                message += i;
+            }
+            document.getElementById("output").innerHTML = message;
+        }
+
+        //nasty path -the counter is already above the check figure, the loop will not stop
+        function infiniteForLoop() {
+                for (i = 3; i < 2; i++)
+                    message += i;
+            }
+        //nasty path - semicolon keeps for loop from executing statement
+        function badForLoop() {
+            
+            for (i = 0; i < 100; i++); {
+                message += i;
+            }
+            document.getElementById("output").innerHTML = message;
+        }
+
+        //happy path
+        function correctWhileLoop() {
+            var y = 0;
+            var x = 200;
+            var whileResult = "The coordinates are: ";
+
+            while (x > 100) {
+                whileResult += "(" + x + "," + y + ") ";
+                y += 20;
+                x -= 20
+            }
+            document.getElementById("output").innerHTML = whileResult;
+        }
+
+        //nasty path - the loop will not function because the counter is already above 10
+        function badWhileLoop() {
+                message = "If this prints, while loop did not execute code within"
+                var i = 10;
+                while (i < 10) {
+                    message += i + " ";
+                    i--;
+                }
+                document.getElementById("output").innerHTML = message;
+            }
+            //nasty path - this won't work because if statement uses = instead of ==
+        function badIfStatement() {
+                var score = document.getElementById("testScore").value;
+			//can do as 100 = score and then will throw an exception
+                if (score = 100) {
+                    message = "100 Perfect Score";
+                } else {
+                    message == "try again";
+                }
+                document.getElementById("output").innerHTML = message;
+            }
+		
+        //happy path
+        function ifStatement() {
+            var name = document.getElementById("name").value;
+            var message = "Hi";
+            if (name == "Richard") {
+                message = "Welcome Richard";
+            } else if (name == "Dan") {
+                message = "Hello Dan";
+            } else if (name == "Robert") {
+                message = "Hello Robert";
+            } else {
+                message = "Who are you?";
+            }
+            document.getElementById("output").innerHTML = message;
+        }
+
+        //happy path 
+        function CorrectSwitchFunction() {
+            message = "if this shows up switch statement did not execute";
+            var day = parseInt(document.getElementById("day").value);
+            switch (day) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                message = "Waiting on the weekend";
+                break;
+            case 0:
+            case 6:
+                message = "Its the weekend!";
+                break;
+            default:
+                message = "Try again, the key is Sunday - 0, Monday - 1, Tuesday - 2, Wednesday - 3, Thursday - 4, Friday - 5, Saturday - 6"
+            }
+            document.getElementById("output").innerHTML = message;
+        }
+
+        //nasty path - the problem here is that numbers in between 100 & 90 will get "try again"
+        //also missing break; so will continue to check each case
+        function BadSwitchFunction() {
+            var score = parseInt(document.getElementById("testScore").value);
+            switch (score) {
+            case 100:
+                message = "Perfect Score";
+
+            case 90:
+                message = "Good Job";
+
+            case 80:
+                message = "Not Bad";
+
+            case 70:
+                message = "C's get degrees";
+
+            default:
+                message = "Try again";
+            }
+            document.getElementById("output").innerHTML = message;
+        }
+
+        //happy paths - arrays
+        function myArray() {
+            var carList = "";
+            var carTypes = ["honda", "toyota", "acura"];
+            for (i = 0; i < carTypes.length; i++) {
+                carList += carTypes[i] + " ";
+            }
+            document.getElementById("output").innerHTML = carList;
+        }
+
+        //nasty paths - arrays, this has potential to have a bad index, if index is 6 userDay will be undefined
+        function dayArray() {
+            var arrayOfDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var userDay = parseInt(document.getElementById("day").value);
+            document.getElementById("output").innerHTML = "Tomorrow is " + arrayOfDays[userDay + 1];
+        }
+
+        //happy path - associative arrays
+        function showAssocArray() {
+            var userName = document.getElementById("name").value;
+            var userDay = document.getElementById("day").value;
+            var userScore = document.getElementById("testScore").value;
+            var assocArray = {"name": userName, "day": userDay, "score": userScore};
+            document.getElementById("output").innerHTML = assocArray.name + ", " +
+                assocArray.day + ", " + assocArray.score;
+        }
+ 
+		//NASTY PATH - key doesn't exist - runs but results as "undefined"
+		function nonexistantKey(){
+			var userName = document.getElementById("name").value;
+            var userDay = document.getElementById("day").value;
+            var userScore = document.getElementById("testScore").value;
+			
+            var assocArray = {"name": userName, "day": userDay, "score": userScore};
+			
+			document.getElementById('output').innerHTML = assocArray.missingKey;
+				
+		}
+		//NASTY PATH - if key is null, compiles but comes out as undefined
+		function nullKey(){
+			var myArray = {"user":"Richard", "age": 25, null:"Hi"};
+			document.getElementById('output').innerHTML = myArray.Hi;
+		}
+		
+		//NASTY PATH - if value is null - does not compile
+		function nullValue(){
+			var b = {"user": null};
+			document.getElementById('output').innerHTML = b.user;
+		}
+		
+		//NASTY PATH - if name and value are null - does not compile
+		function allNull(){
+			var c = {"user":"Richard", null:null};
+			document.getElementById('output').innerHTML = c.user + " " + c.null;
+       /* 		
+		TRY THESE THINGS BEFORE MOVING TO "DISAGREE"
+		assoc array - key doesn't exist;
+					- key is null
+					- key is not null and the value is
+					- and both are null
+		array
+					- remove something from array that doesn't exist
+					- insert null in the middle
+					- pop, shift, unshift, push
+		
+		*/
+    </script>
+</head>
+
+<body>
+
+
+
+    <div style="height:50px">
+        Enter your name:
+        <input type='text' id='name' size="10"> Enter the day of the week in number format (1 - Monday, 2 - Tuesday, etc.):
+        <input type="text" id='day' size='2'> What was your score
+        <input type="text" id="testScore" size="5">
+
+
+    </div>
+    <div>
+        <button type="button" onclick="correctForLoop()">For Loop</button>
+        <button type="button" onclick="infiniteForLoop()">Don't click here infinite loop</button>
+        <button type="button" onclick="badForLoop()">Bad For Loop</button>
+        <button type="button" onclick="correctWhileLoop()">While Loop</button>
+        <button type="button" onclick="badWhileLoop()">Bad While Loop</button>
+        <button type="button" onclick="badIfStatement()">Bad If Statement</button>
+        <button type="button" onclick="ifStatement()">If Statement</button>
+        <button type="button" onclick="CorrectSwitchFunction()">Switch Function</button>
+
+        <button type="button" onclick="BadSwitchFunction()">Bad Switch Function</button>
+        <button type="button" onclick="myArray()">Show Car Array</button>
+        <button type="button" onclick="dayArray()">What is tomorrow</button>
+        <button type="button" onclick="showAssocArray()">See Associative Array</button>
+		<button type="button" onclick="nonexistantKey()">Key Doesn't exist</button>
+		<button	type ="button" onclick="nullKey()">Key is Null</button>
+		<button type="button" onclick="nullValue()">Value is null</button>
+		<button type="button" onclick="allNull()">Key and value is null</button>
+
+        <!-- <button type="button" onclick=""></button> -->
+
+    </div>
+    <div id="output"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Loops</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function correctForLoop() {
+            var result = "";
+            for (i = 0; i < 10; i++) {
+                result += i;
+            }
+            document.getElementById("output1").innerHTML = result;
+        }
+
+        function correctWhileLoop() {
+            var y = 0;
+            var x = 200;
+            var whileResult = "The coordinates are: ";
+
+            while (x > 100) {
+                whileResult += "(" + x + "," + y + ") ";
+                y += 20;
+                x -= 20;
+            }
+            document.getElementById("output2").innerHTML = whileResult;
+        }
+
+        function DoWhileLoop() {
+            var w = 10;
+            var finalNumber = 0;
+            do {
+                finalNumber = "the final number is " + w;
+                w += 3.3;
+            } while (w <= 20);
+
+            return finalNumber;
+        }
+
+        function callDoWhile() {
+            document.getElementById("output3").innerHTML = DoWhileLoop();
+        }
+
+        function ifStatement() {
+            var name = document.getElementById("text1").value;
+            var message = "Hi";
+            if (name == "Richard") {
+                message = "Welcome Richard";
+            } else if (name == "Dan") {
+                message = "Hello Dan";
+            } else if (name == "Robert") {
+                message = "Hello Robert";
+            } else {
+                message = "Who are you?";
+            }
+            document.getElementById("output4").innerHTML = message;
+        }
+
+        function SwitchFunction() {
+            var score = document.getElementById("testScore").value;
+            switch (score) {
+            case 'AZ':
+                message = "Arizona";
+                break;
+            case "CA":
+                message = "California";
+                break;
+            case "ID":
+                message = "Idaho";
+                break;
+            case "NY":
+                message = "New York";
+                break;
+            default:
+                message = "Try again";
+            }
+            document.getElementById("output5").innerHTML = message;
+        }
+    </script>
+</head>
+
+<body>
+    <div style="height:50px">
+        <button type="button" onClick="correctForLoop()"> Correct For Loop</button>
+        <div id="output1"></div>
+    </div>
+    <div style="height:50px">
+        <button type="button" onClick="correctWhileLoop()"> Correct While Loop</button>
+        <div id="output2"></div>
+    </div>
+    <div style="height:50px">
+        <button type="button" onClick="callDoWhile()"> Correct Do While Loop</button>
+        <div id="output3"></div>
+    </div>
+    <div style="height:50px">
+        What is your name:
+        <input type="text" id="text1">
+        <button type="button" onclick="ifStatement()">If Statements</button>
+        <div id="output4"></div>
+    </div>
+    <div style="height:50px">
+        What was your score
+        <input type="text" id="testScore" size="5">
+        <button type="button" onclick="SwitchFunction()">Switch Function </button>
+        <div id="output5"></div>
+    </div>
+</body>
+
+</html>
